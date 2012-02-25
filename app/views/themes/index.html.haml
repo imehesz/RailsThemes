@@ -1,0 +1,17 @@
+%h1
+  Rails Themes
+
+%table
+  %tr
+    %th Name
+    %th Short Desr.
+    %th Created
+  -@themes.each do |theme|
+    %tr
+      %td= link_to theme.name, theme
+      %td= theme.short_descr
+      %td{title:theme.created_at.strftime('%m/%d/%Y %I:%M%p')}= theme.created_at.strftime( '%m/%d/%Y' )
+      %td= link_to 'Edit', edit_theme_path(theme)
+      %td= link_to 'Destroy', theme, confirm: 'Are you sure?', method: :delete
+
+= link_to 'New Theme', new_theme_path
