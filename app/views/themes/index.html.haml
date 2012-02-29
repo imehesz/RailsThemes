@@ -4,14 +4,15 @@
   %hr
   = link_to 'New Theme', new_theme_path, :class => 'btn btn-primary'
 
-.row-fluid
-  -@themes.each do |theme|
-    .span4.last
-      %h3
-        =theme.name
-        %small{title:theme.created_at.strftime('%m/%d/%Y %I:%M%p')}= theme.created_at.strftime( '%m/%d' )
-      %img{src:'http://placehold.it/270x150'}
-      %p= theme.short_descr
-      %p
-        = link_to 'Edit', edit_theme_path(theme), :class => 'btn' 
-        = link_to 'Destroy', theme, confirm: 'Are you sure?', method: :delete, :class => 'btn btn-danger'
+-@themes.each_slice(3) do |theme_of_three|
+  .row-fluid
+    -theme_of_three.each do |theme|
+      .span4.last
+        %h3
+          =theme.name
+          %small{title:theme.created_at.strftime('%m/%d/%Y %I:%M%p')}= theme.created_at.strftime( '%m/%d' )
+        %img{src:'http://placehold.it/270x150'}
+        %p= theme.short_descr
+        %p
+          = link_to 'Edit', edit_theme_path(theme), :class => 'btn' 
+          = link_to 'Destroy', theme, confirm: 'Are you sure?', method: :delete, :class => 'btn btn-danger'
