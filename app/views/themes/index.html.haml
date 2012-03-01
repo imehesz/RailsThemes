@@ -9,10 +9,11 @@
     -theme_of_three.each do |theme|
       .span4.last
         %h3
-          =theme.name
+          = link_to theme.name, theme_path(theme)
           %small{title:theme.created_at.strftime('%m/%d/%Y %I:%M%p')}= theme.created_at.strftime( '%m/%d' )
-        %img{src:'http://placehold.it/270x150'}
+        = link_to image_tag(theme.screenshot.length > 0 ? theme.screenshot : 'http://placekitten.com/270/200', {:width => 270, :height => 150}), theme_path(theme)
         %p= theme.short_descr
         %p
           = link_to 'Edit', edit_theme_path(theme), :class => 'btn' 
           = link_to 'Destroy', theme, confirm: 'Are you sure?', method: :delete, :class => 'btn btn-danger'
+        %hr
