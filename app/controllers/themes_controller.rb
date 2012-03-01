@@ -2,7 +2,7 @@ class ThemesController < ApplicationController
   # GET /themes
   # GET /themes.json
   def index
-    @themes = Theme.all
+    @themes = Theme.all(:order=>"updated_at DESC")
 
     respond_to do |format|
       format.html # index.html.erb
